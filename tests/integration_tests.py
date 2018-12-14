@@ -1,4 +1,4 @@
-from tests.data import valid_emails, invalid_emails
+from tests.data import valid_emails, invalid_emails, fake_random_guid
 from typing import List
 from exp.expressionato import Exp
 import exp.expressions as expressions
@@ -36,3 +36,15 @@ def test_invalid_emails():
 
     assert (success == 10 and failure == 1)
 
+
+def test_valid_guid():
+
+    guid: str = fake_random_guid()
+
+    result = re.search(str(expressions.guid(capped=True)), guid)
+
+    assert (guid == result.group())
+
+
+if __name__ == '__main__':
+    test_valid_guid()

@@ -27,8 +27,8 @@ class Exp:
         return value
 
     def __repr__(self) -> str:
-        begin = ['\\A'] if self.config.begin else None
-        end = ['\\Z'] if self.config.begin else None
+        begin = ['\\A'] if self.config.begin else ['']
+        end = ['\\Z'] if self.config.begin else ['']
 
         return r''.join(begin + self.__re_fragments + end)
 

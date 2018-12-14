@@ -1,4 +1,5 @@
 from typing import List
+import random
 
 """https://en.wikipedia.org/wiki/Email_address"""
 valid_emails: List[str] = [
@@ -30,3 +31,12 @@ invalid_emails: List[str] = [
     '.john.doe@example.com',
     'john.doe.@example.com'
 ]
+
+
+def fake_random_guid() -> str:
+    def random_digit(length: int) -> str:
+        nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+
+        return ''.join([random.choice(nums) for x in range(length)])
+
+    return f'{random_digit(8)}-{random_digit(4)}-{random_digit(4)}-{random_digit(4)}-{random_digit(12)}'
