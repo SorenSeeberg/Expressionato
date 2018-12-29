@@ -44,7 +44,3 @@ def test_valid_guid():
     result = re.search(str(expressions.guid(capped=True)), guid)
 
     assert (guid == result.group())
-
-
-if __name__ == '__main__':
-    test_valid_guid()

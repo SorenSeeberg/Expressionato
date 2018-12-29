@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import List
-import exp.character_sequences as CS
+import exp.character_sequences as cs
 
 
 # https://www.debuggex.com/cheatsheet/regex/python
@@ -128,12 +128,12 @@ class Exp:
 
     def alphanum(self):
         """ Helper: sequence string 'A-Za-z0-9' """
-        self.sequence(CS.alphanum)
+        self.sequence(cs.alphanum)
         return self
 
     def seq_ascii(self):
         """ Helper: sequence string 'A-Za-z0-9' """
-        self.sequence(CS.alphanum + CS.ascii_specials)
+        self.sequence(cs.alphanum + cs.ascii_specials)
         return self
 
     def zero_plus(self):
