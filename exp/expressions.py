@@ -12,7 +12,8 @@ def simple_email(capped=False) -> Exp:
     https://en.wikipedia.org/wiki/Email_address
     """
 
-    local: Exp = Exp().negative_look_ahead('^[^.]').sequence(cs.email_local).max(64)
+    # local: Exp = Exp().negative_look_ahead('^[^.]').sequence(cs.email_local).max(64)
+    local: Exp = Exp().sequence(cs.email_local).max(64)
     domain: Exp = Exp().sequence(['.']).sequence(cs.ldh).one_plus()
 
     exp: Exp = local.string('@').sequence(cs.ldh).one_plus().group(domain).zero_plus()
@@ -69,5 +70,28 @@ def color_hex(capped=False, component_count=6) -> Exp:
     return exp
 
 
+@lru_cache(maxsize=1, typed=True)
+def byte(capped: bool = False):
+    """ Byte 0-255 """
+    print("(1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])")
+
+    exp: Exp = Exp().string('1').zero_or_one().sequence(cs.integers).between(1, 2).or_().string('2').sequence(
+        '[0-4]').sequence(cs.integers).or_().string('25').sequence('[0-5]')
+    exp.config.begin = capped
+    exp.config.end = capped
+
+    return exp
+
+
+def ipv4(capped=False):
+    exp: Exp = Exp().group(byte()).string('.').group(byte()).string('.').group(byte()).string('.').group(byte())
+
+    exp.config.begin = capped
+    exp.config.end = capped
+
+    return exp
+
+
+
 if __name__ == '__main__':
-    print(simple_email(True))
+    print(byte())

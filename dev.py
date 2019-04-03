@@ -12,6 +12,7 @@ def validate_emails(emails) -> None:
 
 
 if __name__ == '__main__':
+    print(expressions.simple_email())
     # name = Expressionato().sequence('A-Za-z').one_plus()
     # age = Expressionato().sequence('0-9').between(1, 3)
     # name_and_age = Expressionato().begin().string('name:').group(name).string('age:').group(age).end()

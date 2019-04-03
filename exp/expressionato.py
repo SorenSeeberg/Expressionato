@@ -168,7 +168,7 @@ class Exp:
 
     def between(self, count_min: int, count_max: int):
         """ Quantifier: x to y '{x, y}' """
-        self.__re_fragments.append(f'{{{count_min}, {count_max}}}')
+        self.__re_fragments.append(f'{{{count_min},{count_max}}}')
         return self
 
     def look_ahead(self, string):
